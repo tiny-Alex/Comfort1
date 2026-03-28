@@ -30,6 +30,7 @@ namespace Comfort.Pages
             LoadData();
         }
 
+
         private void LoadData()
         {
             try
@@ -37,43 +38,57 @@ namespace Comfort.Pages
                 PartnerNameTb.Text = _partner.NamePartner;
                 PartnerInfoTb.Text = $"Рейтинг: {_partner.Raiting} | ИНН: {_partner.INN} | Телефон: {_partner.Phone}";
 
-                var sales = (from sh in Connection.connect.SaleHistory
-                             join sp in Connection.connect.SalePoint on sh.Id_point equals sp.Id_point
-                             join p in Connection.connect.Products on sh.Id_product equals p.Id_product
-                             where sp.Id_partner == _partner.Id_partner
-                             select new
-                             {
-                                 ProductName = p.NameProduct,  
-                                 Quantity = sh.Quantity,
-                                 Amount = sh.Amount,
-                                 PointName = sp.NamePoint  
-                             }).ToList();
+                var sales = Connection.connect.SaleHistory
+                    .Where(sh => sh.SalePoint.Id_partner == _partner.Id_partner)
+                    .Select(sh => new
+                    {
+                        ProductName = sh.Products.NameProduct,
+                        Quantity = sh.Quantity,
+                        Amount = sh.Amount,
+                        PointName = sh.SalePoint.NamePoint,
+                        ProductId = sh.Id_product,
+                        ProductTypeId = sh.Products.Id_type
+                    }).ToList();
 
-                if (sales.Count > 0)
-                {
-                    SalesListView.ItemsSource = sales;
-                    EmptyMessage.Visibility = Visibility.Collapsed;
-                    SalesListView.Visibility = Visibility.Visible;
+                SalesListView.ItemsSource = sales;
 
-                    TotalSalesCount.Text = sales.Count.ToString();
-                    TotalProductsCount.Text = sales.Sum(x => x.Quantity ?? 0).ToString();
-                    TotalAmount.Text = sales.Sum(x => x.Amount ?? 0).ToString("N2");
-                }
-                else
-                {
-                    SalesListView.Visibility = Visibility.Collapsed;
-                    EmptyMessage.Visibility = Visibility.Visible;
-
-                    TotalSalesCount.Text = "0";
-                    TotalProductsCount.Text = "0";
-                    TotalAmount.Text = "0";
-                }
+                TotalSalesCount.Text = sales.Count.ToString();
+                TotalProductsCount.Text = sales.Sum(x => x.Quantity ?? 0).ToString();
+                TotalAmount.Text = sales.Sum(x => x.Amount ?? 0).ToString("N2");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка загрузки", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private int CalculateMaterial(int productTypeId, int materialTypeId, int quantity, decimal param1, decimal param2)
+        {
+            try
+            {
+                var prodType = Connection.connect.ProductType.FirstOrDefault(pt => pt.Id_prodtype == productTypeId);
+                var material = Connection.connect.TypeMaterial.FirstOrDefault(tm => tm.Id_type_material == materialTypeId);
+
+                if (prodType == null || material == null) return -1;
+
+                decimal koeff;
+                if (!decimal.TryParse(prodType.Coefficient, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out koeff))
+                    return -1;
+
+                decimal brak = (decimal)material.LostProcent;
+
+                decimal naEdinicu = param1 * param2 * koeff;
+                decimal vsego = naEdinicu * quantity;
+                decimal sBrakom = vsego * (1 + brak);
+
+                return (int)Math.Ceiling(sBrakom);
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();

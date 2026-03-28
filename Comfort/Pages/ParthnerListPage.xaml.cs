@@ -37,7 +37,7 @@ namespace Comfort.Pages
 
                 if (!string.IsNullOrWhiteSpace(SearchBox.Text))
                 {
-                    string searchText = SearchBox.Text.Trim().ToLower();
+                    string searchText = SearchBox.Text.Trim();
                     partners = partners.Where(p =>
                         p.NamePartner != null &&
                         p.NamePartner.ToLower().Contains(searchText)

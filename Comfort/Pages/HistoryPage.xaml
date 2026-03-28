@@ -1,0 +1,83 @@
+﻿<Page x:Class="Comfort.Pages.HistoryPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Comfort.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="HistoryPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="900"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Column="1" Grid.Row="0"
+                   Text="История реализации продукции"
+                   FontSize="32"
+                   FontWeight="Black"
+                   Foreground="#355CBD"
+                   HorizontalAlignment="Center"
+                   Margin="0,20"/>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,0,0,20">
+            <TextBlock x:Name="PartnerNameTb" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+            <TextBlock x:Name="PartnerInfoTb" FontSize="14" TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" 
+                    HorizontalAlignment="Center" Margin="0,0,0,20">
+            <StackPanel Margin="30,0">
+                <TextBlock Text="Всего продаж" FontSize="12" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="TotalSalesCount" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Margin="30,0">
+                <TextBlock Text="Всего продукции" FontSize="12" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="TotalProductsCount" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Margin="30,0">
+                <TextBlock Text="Общая сумма" FontSize="12" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="TotalAmount" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+
+        <ListView x:Name="SalesListView" Grid.Column="1" Grid.Row="3" Margin="0,0,0,20">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Наименование продукции" Width="350" DisplayMemberBinding="{Binding ProductName}"/>
+                    <GridViewColumn Header="Количество" Width="100" DisplayMemberBinding="{Binding Quantity}"/>
+                    <GridViewColumn Header="Сумма" Width="150" DisplayMemberBinding="{Binding Amount, StringFormat={}{0:N2}}"/>
+                    <GridViewColumn Header="Точка продажи" Width="200" DisplayMemberBinding="{Binding PointName}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <TextBlock x:Name="EmptyMessage"
+                   Grid.Column="1"
+                   Grid.Row="3"
+                   Text="История реализации отсутствует"
+                   FontSize="16"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Visibility="Collapsed"/>
+
+        <Button x:Name="BackBtn"
+                Grid.Column="1"
+                Grid.Row="4"
+                Content="Назад"
+                HorizontalAlignment="Left"
+                Margin="0,10,0,30"
+                Click="BackBtn_Click"/>
+    </Grid>
+</Page>

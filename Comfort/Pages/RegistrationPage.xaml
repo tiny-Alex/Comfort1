@@ -58,7 +58,7 @@
                                        Foreground="#355CBD"
                                        Margin="0,0,0,15"/>
 
-                                <TextBlock Text="Логин *" 
+                                <TextBlock Text="Логин" 
                                        FontSize="14"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,5"/>
@@ -68,7 +68,7 @@
                                      Padding="10,5"
                                      Margin="0,0,0,15"/>
 
-                                <TextBlock Text="Пароль *" 
+                                <TextBlock Text="Пароль" 
                                        FontSize="14"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,5"/>
@@ -90,7 +90,7 @@
                                        Foreground="#355CBD"
                                        Margin="0,0,0,15"/>
 
-                                <TextBlock Text="Фамилия *" 
+                                <TextBlock Text="Фамилия" 
                                        FontSize="14"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,5"/>
@@ -99,7 +99,7 @@
                                      FontSize="16"
                                      Padding="10,5"
                                      Margin="0,0,0,15"/>
-                                <TextBlock Text="Имя *" 
+                                <TextBlock Text="Имя" 
                                        FontSize="14"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,5"/>
@@ -117,7 +117,7 @@
                                      FontSize="16"
                                      Padding="10,5"
                                      Margin="0,0,0,15"/>
-                                <TextBlock Text="Дата рождения *" 
+                                <TextBlock Text="Дата рождения" 
                                        FontSize="14"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,5"/>
@@ -142,7 +142,7 @@
                                        Foreground="#355CBD"
                                        Margin="0,0,0,15"/>
 
-                                <TextBlock Text="Серия паспорта *" 
+                                <TextBlock Text="Серия паспорта" 
                                        FontSize="14"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,5"/>
@@ -152,7 +152,7 @@
                                      Padding="10,5"
                                      MaxLength="10"
                                      Margin="0,0,0,15"/>
-                                <TextBlock Text="Номер паспорта *" 
+                                <TextBlock Text="Номер паспорта" 
                                        FontSize="14"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,5"/>
@@ -175,7 +175,7 @@
                                        Foreground="#355CBD"
                                        Margin="0,0,0,15"/>
 
-                                <TextBlock Text="Семейное положение *" 
+                                <TextBlock Text="Семейное положение" 
                                        FontSize="14"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,5"/>
@@ -186,7 +186,7 @@
                                       SelectedValuePath="StatusID"
                                       Margin="0,0,0,15"/>
 
-                                <TextBlock Text="Состояние здоровья *" 
+                                <TextBlock Text="Состояние здоровья" 
                                        FontSize="14"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,5"/>
@@ -196,7 +196,7 @@
                                       DisplayMemberPath="NameHealth"
                                       SelectedValuePath="HealthID"
                                       Margin="0,0,0,15"/>
-                                <TextBlock Text="Должность *" 
+                                <TextBlock Text="Должность" 
                                        FontSize="14"
                                        FontWeight="SemiBold"
                                        Margin="0,0,0,5"/>
@@ -216,15 +216,6 @@
                         Grid.Row="2"
                         HorizontalAlignment="Center"
                         Margin="0,0,0,30">
-
-                    <TextBlock Text="* - обязательные поля" 
-                           FontSize="12"
-                           Foreground="Gray"
-                           FontStyle="Italic"
-                           HorizontalAlignment="Center"
-                           Margin="0,0,0,15"/>
-
-
                     <StackPanel Orientation="Horizontal" 
                             HorizontalAlignment="Center">
 

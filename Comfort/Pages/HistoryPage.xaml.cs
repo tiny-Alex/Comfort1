@@ -43,10 +43,10 @@ namespace Comfort.Pages
                              where sp.Id_partner == _partner.Id_partner
                              select new
                              {
-                                 p.NameProduct,
-                                 sh.Quantity,
-                                 sh.Amount,
-                                 sp.NamePoint,
+                                 ProductName = p.NameProduct,  
+                                 Quantity = sh.Quantity,
+                                 Amount = sh.Amount,
+                                 PointName = sp.NamePoint  
                              }).ToList();
 
                 if (sales.Count > 0)
@@ -74,7 +74,6 @@ namespace Comfort.Pages
                 MessageBox.Show(ex.Message, "Ошибка загрузки", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();

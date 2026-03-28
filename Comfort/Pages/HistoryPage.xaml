@@ -62,7 +62,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-
         <TextBlock x:Name="EmptyMessage"
                    Grid.Column="1"
                    Grid.Row="3"
